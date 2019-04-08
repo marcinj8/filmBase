@@ -1,0 +1,13 @@
+.SingleFilmBlock__container {
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 6px;
+    width: 300px;
+    margin: 2px auto;
+    padding: 5px;
+    background: rgb(233, 233, 233);
+    overflow: hidden;
+}
+
+.SingleFilmBlock__image {
+    width: 90%
+}

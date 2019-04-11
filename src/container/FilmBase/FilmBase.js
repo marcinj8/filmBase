@@ -36,9 +36,9 @@ class FilmBase extends Component {
         this.setState({loading: true})
     }
 
-    getData = () => {
+    getData = (page=this.state.page) => {
         this.loading()
-        axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?page=${this.state.page}&r=json&type=${this.props.type}&s=${this.props.title}`, config)
+        axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?page=${page}&r=json&type=${this.props.type}&s=${this.props.title}`, config)
         .then( response => {
              console.log(response);
              this.setState({
@@ -51,20 +51,25 @@ class FilmBase extends Component {
     };
 
     onChangePageHandler = page => {
+        if(this.state.page === page){
+            return
+        }
         this.setState({
             page: page
         })
-        this.getData();
+        this.getData(page);
     }
 
     render() {
         let responsePageNavigation = [0]
         
         if(this.state.numberOfPages) {
-            responsePageNavigation = <ResponsePageNavigation 
-                                        numberOfPages={this.state.numberOfPages}
-                                        currentPage={this.state.page}
-                                        clicked={this.onChangePageHandler}/>
+            responsePageNavigation = (
+                <ResponsePageNavigation 
+                    numberOfPages={this.state.numberOfPages}
+                    currentPage={this.state.page}
+                    clicked={this.onChangePageHandler}/>
+            )
         }
         let filmBase = <p>write title</p>
 
@@ -73,9 +78,12 @@ class FilmBase extends Component {
         }
         
         if(this.state.filmBase) {
-            filmBase = <FilmContainer
-                            filmBase = {this.state.filmBase} 
-                            type={this.state.type}/>
+            filmBase = (
+                <FilmContainer
+                    onZoomFilmData={this.props.onZoomFilmData}
+                    filmBase = {this.state.filmBase} 
+                    type={this.state.type}/>
+            )
         }
 
         if(this.state.loading) {

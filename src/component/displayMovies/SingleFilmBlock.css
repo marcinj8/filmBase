@@ -2,12 +2,73 @@
     border: 1px solid rgb(95, 95, 95);
     border-radius: 6px;
     width: 300px;
-    margin: 2px auto;
+    margin: 8px auto;
     padding: 5px;
     background: rgb(233, 233, 233);
     overflow: hidden;
+    box-shadow: rgb(87, 87, 87) 3px 2px 2px;
+    transition: all .2s ease-in-out;
 }
 
 .SingleFilmBlock__image {
-    width: 90%
+    width: 90%;
+    max-width:400px
+}
+
+.SingleFilmBlock__container:hover {
+    transform: scale(1.03);
+    box-shadow: rgb(87, 87, 87) 15px 5px 8px;
+
+}
+
+.ZoomPositon__container{
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 6px;
+    margin: 8px auto;
+    padding: 5px;
+    background: rgb(233, 233, 233);
+    overflow: hidden;
+    position: fixed;
+    top: -100%;
+    left: -100%;
+    width: 40%;
+    border: 1px solid black;
+}
+
+.ZoomPositon__container--activate {
+    animation: activateZoomPositon .5s forwards;
+}
+
+@keyframes activateZoomPositon {
+    0%{
+        top: -100%;
+        left: -100%;
+    }
+    50%{
+        top: 20%;
+        left: 40%;
+    }
+    100%{
+        top: 10%;
+        left: 30%;
+    }
+}
+
+.ZoomPositon__container--deactivate {
+    animation: deactivateZoomPositon .5s forwards;
+}
+
+@keyframes deactivateZoomPositon {
+    0%{
+        top: 10%;
+        left: 30%;
+    }
+    50%{
+        top: 20%;
+        left: 40%;
+    }
+    100%{
+        top: -100%;
+        left: -100%;
+    }
 }

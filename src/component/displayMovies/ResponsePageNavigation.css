@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     justify-content: center;
     border-bottom: 1px solid gray;
+    transition: all 1s ease;
 }
 
 .ResponsePageNavigation__buttons {
@@ -23,5 +24,13 @@
 .ResponsePageNavigation__buttons--active{
     background: rgb(246, 225, 185);
     border: 1px dashed orangered;
-    cursor: pointer;
+    cursor: default;
+}
+
+.ResponsePageNavigation__buttons--active:hover{
+    background: rgb(246, 225, 185);
+    border: 1px dashed red;
+    color: red;
+    background: pink;
+    cursor: default;
 }

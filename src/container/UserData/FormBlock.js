@@ -24,6 +24,7 @@ class FormBlock extends Component {
     render() {
         return (
             <Form 
+                displayMovies={this.props.displayMovies}
                 title={this.state.title}
                 inputChange={this.onInputChangeHandler}
                 selectChange={this.onCheckBoxChangeHandler}

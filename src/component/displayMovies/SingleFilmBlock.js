@@ -6,11 +6,13 @@ const singleFilmBlock = props => {
     let poster = <p>There is no poster</p>
     if(props.poster){
         poster = <img className='SingleFilmBlock__image' src={props.poster} alt=""/>
-    }
+    };
+
+    let singleFilmBlockStyle = props.style || ['SingleFilmBlock__container'];
 
     return (
-        <div className='SingleFilmBlock__container'>
-            <h2>{props.title}</h2>
+        <div className={singleFilmBlockStyle.join(' ')}>
+            <h2 onClick={props.clicked}>{props.title}</h2>
             {poster}
             <div>The {props.type} from {props.year}</div>
             <p>

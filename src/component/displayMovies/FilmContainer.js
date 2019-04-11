@@ -2,10 +2,13 @@ import React from 'react';
 
 import SingleFilmBlock from './SingleFilmBlock';
 
+import './FilmContainer.css'
+
 const filmContainer = props => {
     const films = props.filmBase.map( (movie, i) => {
         return (
-            <SingleFilmBlock 
+            <SingleFilmBlock
+                clicked={()=> props.onZoomFilmData(movie)}
                 key={i}
                 title={movie.Title}
                 type={props.type}
@@ -14,7 +17,7 @@ const filmContainer = props => {
                 id={movie.imdbID}/>
         )
     })
-    return <div>{films}</div>
+    return <div className='FilmContainer__container'>{films}</div>
 }
 
 export default filmContainer;

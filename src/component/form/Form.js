@@ -1,8 +1,17 @@
 import React from 'react';
 
+import './Form.css';
+
 const form = props => {
+    let formStyle = ['Form__container'];
+    if(props.displayMovies){
+        formStyle.push('Form__container--displayMovies');
+    } else {
+        formStyle.push('Form__container--start');
+    }
+
     return (
-        <div>
+        <div className={formStyle.join(' ')}>
             <input 
                 type="text" 
                 name="title" 

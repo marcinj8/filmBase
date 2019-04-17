@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
+import Header from '../../component/Header/Header';
 import FormBlock from '../../container/UserData/FormBlock';
 import FilmBase from '../FilmBase/FilmBase';
 import ZoomFilm from '../../component/ZoomPositon/ZoomPosition';
-// import DataGetter from '../Datagetter/DataGetter';
-
-
 
 class Layout extends Component {
 
@@ -21,9 +19,6 @@ class Layout extends Component {
             title: title,
             type: type
         })
-    //    getData = () => {
-    //        let response = DataGetter.getMovieData(this.state.title);
-    //        console.log(response)
     }
 
     zoomFilmDataHandler = movie => {
@@ -38,9 +33,9 @@ class Layout extends Component {
     }
 
     render () {
-        // console.log(DataGetter.moviesBase, 'render')
         return (
-            <div>
+            <div style={{'minHeight':'94vh', 'margin': '0','padding': '5px','boxSizing': 'border-box'}}>
+                <Header />
                 <FormBlock 
                     displayMovies={this.state.title !== null || this.state.type !== null}
                     searchMovies={this.getMovieData}

@@ -2,7 +2,7 @@
     border: 1px solid rgb(95, 95, 95);
     border-radius: 6px;
     width: 300px;
-    margin: 8px auto;
+    margin: 15px;
     padding: 5px;
     background: rgb(233, 233, 233);
     overflow: hidden;
@@ -10,9 +10,19 @@
     transition: all .2s ease-in-out;
 }
 
+.SingleFilmBlock__container h2 {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.SingleFilmBlock__container h2:hover {
+    letter-spacing: 0.5px;
+    color: orange;
+}
+
 .SingleFilmBlock__image {
     width: 90%;
-    max-width:400px
+    max-width: 400px
 }
 
 .SingleFilmBlock__container:hover {
@@ -21,7 +31,7 @@
 
 }
 
-.ZoomPositon__container{
+.ZoomPositon__container {
     border: 1px solid rgb(95, 95, 95);
     border-radius: 6px;
     margin: 8px auto;
@@ -40,15 +50,19 @@
 }
 
 @keyframes activateZoomPositon {
-    0%{
+    0% {
+        opacity: 0;
         top: -100%;
         left: -100%;
     }
-    50%{
+
+    80% {
         top: 20%;
         left: 40%;
     }
-    100%{
+
+    100% {
+        opacity: 1;
         top: 10%;
         left: 30%;
     }
@@ -59,15 +73,19 @@
 }
 
 @keyframes deactivateZoomPositon {
-    0%{
+    0% {
+        opacity: 1;
         top: 10%;
         left: 30%;
     }
-    50%{
+
+    30% {
         top: 20%;
         left: 40%;
     }
-    100%{
+
+    100% {
+        opacity: 0;
         top: -100%;
         left: -100%;
     }

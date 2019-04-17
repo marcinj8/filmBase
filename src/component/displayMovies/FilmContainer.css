@@ -1,14 +1,7 @@
 .FilmContainer__container{
-    width:350px;
-    margin: 0 auto;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    flex-flow: center;
     justify-content: center;
-}
-
-@media(min-width: 750px) {
-    .FilmContainer__container{
-        width:730px;
-        margin: 0 auto;
-    }  
 }

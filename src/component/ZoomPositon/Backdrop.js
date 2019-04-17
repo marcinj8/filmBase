@@ -3,10 +3,7 @@ import React from 'react';
 import './Backdrop.css'
 
 const backdrop = props => {
-    let backdropStyle = {'display':'none'};
-    if(props.show) {
-        backdropStyle = 'Backdrop__container';
-    };
+    let backdropStyle = props.show ? 'Backdrop__container' : {'display':'none'};
 
     return (
         <div 

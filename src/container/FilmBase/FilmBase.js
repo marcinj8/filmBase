@@ -33,7 +33,11 @@ class FilmBase extends Component {
     };
 
     loading = () => {
-        this.setState({loading: true})
+        this.setState({
+            loading: true,
+            error:false,
+            errorMessage: ''
+        })
     }
 
     getData = (page=this.state.page) => {
@@ -47,6 +51,12 @@ class FilmBase extends Component {
                  numberOfPages: Math.ceil(response.data.totalResults/10),
                  loading: false
              })
+        })
+        .catch( () => {
+            this.setState({
+                error: true,
+                loading: false,
+            })
         })
     };
 
@@ -71,7 +81,7 @@ class FilmBase extends Component {
                     clicked={this.onChangePageHandler}/>
             )
         }
-        let filmBase = <p>write title</p>
+        let filmBase = <p>Please write title</p>
 
         if(this.state.error) {
             filmBase = <p>something went wrong</p>
@@ -93,7 +103,7 @@ class FilmBase extends Component {
         const title = (
             this.state.searched && this.state.filmBase && this.state.results.length
             ? <h3>Searched phrase: {this.state.searched}, found: {this.state.results} positons.</h3>
-            : <h4>Film searcher</h4>
+            : null
         )
         
         return (

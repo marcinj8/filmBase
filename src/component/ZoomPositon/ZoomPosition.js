@@ -7,13 +7,9 @@ const ZoomPosition = props => {
     
     let zoomPosition = null;
     
-    let zoomPositionStyle = ['ZoomPositon__container']
-    if(props.showMoviesData === true) {
-        zoomPositionStyle = ['ZoomPositon__container', 'ZoomPositon__container--activate']
-    }
-    else if (props.showMoviesData === false){
-        zoomPositionStyle = ['ZoomPositon__container', 'ZoomPositon__container--deactivate']
-    }
+    let zoomPositionStyle = [
+        'ZoomPositon__container', 
+        props.showMoviesData ? 'ZoomPositon__container--activate' : 'ZoomPositon__container--deactivate' ]
 
     if(props.movie){
         zoomPosition = (

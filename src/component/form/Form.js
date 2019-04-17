@@ -9,7 +9,12 @@ const form = props => {
     } else {
         formStyle.push('Form__container--start');
     }
-
+    console.log(props.disableButton)
+    const buttonStyle = ['Form__btn',
+        props.disableButton
+        ?'Form__btn--disabled'
+        :'Form__btn--enabled'
+        ]
     return (
         <div className={formStyle.join(' ')}>
             <input 
@@ -24,7 +29,10 @@ const form = props => {
                 <option value='series'>series</option>
                 <option value='episode'>episode</option>
             </select>
-            <button onClick={props.clicked}>Search</button>
+            <button 
+                className={buttonStyle.join(' ')}
+                disabled={props.disableButton}
+                onClick={props.clicked}>Search</button>
         </div>
     )
 }

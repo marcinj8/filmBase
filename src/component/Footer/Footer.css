@@ -1,0 +1,18 @@
+.Footer__container {
+    box-sizing: border-box;
+    background: rgb(110,110,110);
+    background: linear-gradient(0deg, rgba(110,110,110,1) 0%, rgba(139,139,143,1) 35%, rgba(107,107,107,1) 100%);
+    padding-top: 5px;
+    margin: 0 auto;
+    min-height: 6vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: center;
+    justify-content: center;
+    border-top: 1px solid black;
+}
+
+.Footer__container div {
+    margin: 5px;
+    padding: 5px;
+}

@@ -1,15 +1,78 @@
 .Form__container {
-    background: silver;
+    background: rgb(163,157,157);
+background: linear-gradient(349deg, rgba(163,157,157,1) 0%, rgba(208,208,208,1) 52%, rgba(168,168,168,1) 100%);
     box-sizing: border-box;
     transition: all .2s ease;
 }
 
 .Form__container--start {
     padding: 70px 0;
-    height: 150px;
+    height: 170px;
 }
 
 .Form__container--displayMovies {
     padding: 30px 0;
-    height: 70px;
+    height: 90px;
+}
+
+.Form__btn {
+    display: block;
+    margin: 10px auto;
+    width: 100px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid black;
+    outline: none;
+    transition: all .3s;
+}
+
+.Form__btn--disabled {
+    cursor: not-allowed;
+    animation: disableButton .4s forwards;
+
+}
+
+.Form__btn--enabled {
+    animation: enableButton .5s forwards;
+}
+
+.Form__btn--enabled:hover {
+    background: rgb(190, 253, 190);
+    color: rgb(2, 100, 2);
+    box-shadow: 2px 2px 5px black;
+}
+
+@keyframes enableButton {
+    0% {
+        transform: scale(1)
+    }
+
+    70% {
+        transform: scale(1.1);
+        background: none
+    }
+
+    85% {
+        transform: scale(1)
+    }
+
+    100% {
+        transform: scale(1.2);
+        background: rgb(204, 255, 204);
+        color: rgb(4, 170, 4);
+        box-shadow: 2px 2px 5px rgb(58, 57, 57);
+
+    }
+}
+
+@keyframes disableButton {
+    0% {
+        transform: scale(1.1)
+    }
+
+    100% {
+        transform: scale(1);
+        background: rgb(255, 204, 204);
+        color: rgb(170, 4, 4)
+    }
 }

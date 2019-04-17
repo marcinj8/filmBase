@@ -6,12 +6,14 @@ class FormBlock extends Component {
 
     state = {
         input: '',
-        type: 'movie'
+        type: 'movie',
+        disableButton: true
     };
 
     onInputChangeHandler = e => {
         this.setState({
-            input: e.target.value
+            input: e.target.value,
+            disableButton: e.target.value.length >= 1 ? false : true
         })
     };
 
@@ -24,6 +26,7 @@ class FormBlock extends Component {
     render() {
         return (
             <Form 
+                disableButton={this.state.disableButton}
                 displayMovies={this.props.displayMovies}
                 title={this.state.title}
                 inputChange={this.onInputChangeHandler}

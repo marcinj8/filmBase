@@ -4,6 +4,9 @@ import axios from 'axios';
 import FilmContainer from '../../component/displayMovies/FilmContainer';
 import ResponsePageNavigation from '../../component/displayMovies/ResponsePageNavigation';
 
+import './FilmBase.css';
+import redCourtain from '../../img/5a1bb95205ea94.6786220615117663540242.png'
+
 let config = {
     headers: {
         'X-RapidAPI-Key': '4b2796f64emsh1fba38a60c9c0d5p174064jsn3a16fa3fa413',
@@ -20,6 +23,7 @@ class FilmBase extends Component {
         loading: false,
         error: false,
         numberOfPages: null,
+        navigationStyle: ['FilmBase__navigation']
     };
 
     componentDidUpdate () {
@@ -70,8 +74,13 @@ class FilmBase extends Component {
         this.getData(page);
     }
 
+    showFilmBaseNavigationHandler = () => {
+        
+    }
+
     render() {
-        let responsePageNavigation = [0]
+        let responsePageNavigation = [0];
+        let redCourtainStyle = ['FilmBase__img'];
         
         if(this.state.numberOfPages) {
             responsePageNavigation = (
@@ -81,13 +90,22 @@ class FilmBase extends Component {
                     clicked={this.onChangePageHandler}/>
             )
         }
-        let filmBase = <p>Please write title</p>
+        let filmBase = <p className='Filmbase__message'>Please write title</p>
 
         if(this.state.error) {
-            filmBase = <p>something went wrong</p>
+            redCourtainStyle = ['FilmBase__img', 'FilmBase__img--closed'];
+            filmBase = <p className='Filmbase__message'>something went wrong</p>
         }
         
         if(this.state.filmBase) {
+            redCourtainStyle = ['FilmBase__img', 'FilmBase__img--open'];
+            setTimeout( () => {
+                this.setState({
+                navigationStyle : ['FilmBase__navigation', 'FilmBase__navigation--show']
+                })
+            }
+            , 900);
+
             filmBase = (
                 <FilmContainer
                     onZoomFilmData={this.props.onZoomFilmData}
@@ -97,7 +115,8 @@ class FilmBase extends Component {
         }
 
         if(this.state.loading) {
-            filmBase = <p>Loading...</p>
+            redCourtainStyle = ['FilmBase__img', 'FilmBase__img--loading'];
+            // filmBase = <p>Loading...</p>
         }
 
         const title = (
@@ -107,12 +126,17 @@ class FilmBase extends Component {
         )
         
         return (
-            <div>
-                {title}
-                {this.state.numberOfPages 
-                    ? responsePageNavigation
-                    : null}
-                {filmBase}
+            <div style={{'height': '100%'}}>
+                <div className={this.state.navigationStyle.join(' ')}>
+                    {title}
+                    {this.state.numberOfPages 
+                        ? responsePageNavigation
+                        : null}
+                </div>
+                <div className='FilmBase__container'>
+                    <img className={redCourtainStyle.join(' ')} src={redCourtain} alt="" />
+                    {filmBase}
+                </div>
             </div>
         )
     };

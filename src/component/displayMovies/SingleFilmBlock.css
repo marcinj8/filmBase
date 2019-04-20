@@ -17,7 +17,7 @@
 
 .SingleFilmBlock__container h2:hover {
     letter-spacing: 0.5px;
-    color: orange;
+    color: rgb(165, 0, 0);
 }
 
 .SingleFilmBlock__image {

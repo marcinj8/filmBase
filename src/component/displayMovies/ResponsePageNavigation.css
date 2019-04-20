@@ -12,18 +12,18 @@
     min-width: 20px;
     margin: 1px;
     padding: 1px;
-    border: 1px dashed orange;
+    border: 1px dashed rgb(165, 0, 0);
 }
 
 .ResponsePageNavigation__buttons:hover {
     background: rgb(246, 225, 185);
-    border: 1px dashed orangered;
+    border: 1px dashed rgb(165, 0, 0);
     cursor: pointer;
 }
 
 .ResponsePageNavigation__buttons--active{
     background: rgb(246, 225, 185);
-    border: 1px dashed orangered;
+    border: 1px dashed rgb(165, 0, 0);
     cursor: default;
 }
 

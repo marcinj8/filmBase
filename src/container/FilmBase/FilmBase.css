@@ -1,0 +1,66 @@
+.FilmBase__navigation {
+    height: 0;
+    overflow: hidden;
+}
+.FilmBase__navigation--show {
+    animation: showNavigation 1s forwards;
+}
+
+@keyframes showNavigation {
+    0%{
+        height: 0;
+    }
+    100%{
+        height: 100px;
+    }
+}
+
+.FilmBase__container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-height: 68vh;
+    overflow: hidden;
+    margin:0;
+}
+.Filmbase__message{
+    font-size: 2rem;
+    color: wheat;
+    text-shadow: 0 0 5px white;
+    padding: 50px;
+}
+.FilmBase__img{
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -100;
+    top:0;
+    translate: all .5s;
+}
+.FilmBase__img--loading {
+    animation: openCurtain .6s forwards;
+}
+
+.FilmBase__img--open {
+    animation: openCurtain .3s forwards;
+}
+.FilmBase__img--closed {
+    animation: closeCurtain 3s forwards;
+}
+
+@keyframes openCurtain {
+    0%{
+    }
+    100%{
+        top:-97%;
+    }
+}
+
+@keyframes closeCurtain {
+    0%{
+    }
+    100%{
+        top: 0%;
+    }
+}

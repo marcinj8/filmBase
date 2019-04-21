@@ -9,7 +9,6 @@ const form = props => {
     } else {
         formStyle.push('Form__container--start');
     }
-    console.log(props.disableButton)
     const buttonStyle = ['Form__btn',
         props.disableButton
         ?'Form__btn--disabled'

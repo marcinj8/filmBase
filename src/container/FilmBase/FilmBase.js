@@ -65,17 +65,14 @@ class FilmBase extends Component {
     };
 
     onChangePageHandler = page => {
-        if(this.state.page === page){
+        console.log(page)
+        if(this.state.page === page || page < 1 || page > this.state.numberOfPages){
             return
         }
         this.setState({
             page: page
         })
         this.getData(page);
-    }
-
-    showFilmBaseNavigationHandler = () => {
-        
     }
 
     render() {
@@ -87,7 +84,7 @@ class FilmBase extends Component {
                 <ResponsePageNavigation 
                     numberOfPages={this.state.numberOfPages}
                     currentPage={this.state.page}
-                    clicked={this.onChangePageHandler}/>
+                    onChangePage={this.onChangePageHandler}/>
             )
         }
         let filmBase = <p className='Filmbase__message'>Please write title</p>
@@ -99,12 +96,15 @@ class FilmBase extends Component {
         
         if(this.state.filmBase) {
             redCourtainStyle = ['FilmBase__img', 'FilmBase__img--open'];
-            setTimeout( () => {
-                this.setState({
-                navigationStyle : ['FilmBase__navigation', 'FilmBase__navigation--show']
-                })
+            if(this.state.navigationStyle.length < 2) {
+                setTimeout( () => {
+                    this.setState({
+                        navigationStyle: ['FilmBase__navigation', 'FilmBase__navigation--show']
+                    })
+                }
+                , 500);
             }
-            , 900);
+           
 
             filmBase = (
                 <FilmContainer
@@ -116,7 +116,7 @@ class FilmBase extends Component {
 
         if(this.state.loading) {
             redCourtainStyle = ['FilmBase__img', 'FilmBase__img--loading'];
-            // filmBase = <p>Loading...</p>
+            filmBase = <p>Loading...</p>
         }
 
         const title = (

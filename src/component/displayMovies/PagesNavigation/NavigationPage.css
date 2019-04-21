@@ -1,0 +1,36 @@
+.ResponsePageNavigation__container {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid gray;
+    transition: all 1s ease;
+}
+
+.ResponsePageNavigation__buttons {
+    display: inline-block;
+    min-width: 20px;
+    margin: 1px;
+    padding: 1px;
+    border: 1px dashed rgb(165, 0, 0);
+}
+
+.ResponsePageNavigation__buttons:hover {
+    background: rgb(246, 225, 185);
+    border: 1px dashed rgb(165, 0, 0);
+    cursor: pointer;
+}
+
+.ResponsePageNavigation__buttons--active{
+    background: rgb(246, 225, 185);
+    border: 1px dashed rgb(165, 0, 0);
+    cursor: default;
+}
+
+.ResponsePageNavigation__buttons--active:hover{
+    background: rgb(246, 225, 185);
+    border: 1px dashed red;
+    color: red;
+    background: pink;
+    cursor: default;
+}

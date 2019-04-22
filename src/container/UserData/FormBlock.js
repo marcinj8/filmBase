@@ -23,15 +23,25 @@ class FormBlock extends Component {
         })
     ]
 
+    searchingHandler = ( title, type ) => {
+        this.setState({
+            input: '',
+            type: 'movie',
+            disableButton: true
+        })
+        this.props.searchMovies( title, type )
+    }
+
     render() {
         return (
-            <Form 
+            <Form
+                clickedNewSearching={this.props.onNewSearching}
                 disableButton={this.state.disableButton}
                 displayMovies={this.props.displayMovies}
                 title={this.state.title}
                 inputChange={this.onInputChangeHandler}
                 selectChange={this.onCheckBoxChangeHandler}
-                clicked={() => this.props.searchMovies(this.state.input, this.state.type)}/>
+                clicked={() => this.searchingHandler(this.state.input, this.state.type)}/>
         )
     }
 }

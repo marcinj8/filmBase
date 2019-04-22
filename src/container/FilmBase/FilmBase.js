@@ -27,6 +27,19 @@ class FilmBase extends Component {
     };
 
     componentDidUpdate () {
+        if(!this.props.show && this.state.navigationStyle.length === 2) {
+            console.log(this.state.navigationStyle.length)
+            this.setState({
+                navigationStyle: ['FilmBase__navigation']
+            })
+        }
+
+        if(!this.props.show && this.state.page !== 1) {
+            this.setState({
+                page: 1
+            })
+        }
+
         if((this.props.title && this.props.type ) && (this.state.searched !==this.props.title || this.state.type !== this.props.type)) {
             this.getData();
             this.setState({
@@ -48,7 +61,6 @@ class FilmBase extends Component {
         this.loading()
         axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?page=${page}&r=json&type=${this.props.type}&s=${this.props.title}`, config)
         .then( response => {
-             console.log(response);
              this.setState({
                  filmBase: response.data.Search,
                  results: response.data.totalResults,
@@ -65,7 +77,6 @@ class FilmBase extends Component {
     };
 
     onChangePageHandler = page => {
-        console.log(page)
         if(this.state.page === page || page < 1 || page > this.state.numberOfPages){
             return
         }
@@ -78,6 +89,10 @@ class FilmBase extends Component {
     render() {
         let responsePageNavigation = [0];
         let redCourtainStyle = ['FilmBase__img'];
+
+        if(!this.props.title) {
+            redCourtainStyle = ['FilmBase__img', 'FilmBase__img--closed'];
+        }
         
         if(this.state.numberOfPages) {
             responsePageNavigation = (
@@ -94,7 +109,7 @@ class FilmBase extends Component {
             filmBase = <p className='Filmbase__message'>something went wrong</p>
         }
         
-        if(this.state.filmBase) {
+        if(this.state.filmBase && this.props.title) {
             redCourtainStyle = ['FilmBase__img', 'FilmBase__img--open'];
             if(this.state.navigationStyle.length < 2) {
                 setTimeout( () => {
@@ -104,7 +119,6 @@ class FilmBase extends Component {
                 }
                 , 500);
             }
-           
 
             filmBase = (
                 <FilmContainer
@@ -114,13 +128,15 @@ class FilmBase extends Component {
             )
         }
 
+        
+
         if(this.state.loading) {
             redCourtainStyle = ['FilmBase__img', 'FilmBase__img--loading'];
             filmBase = <p>Loading...</p>
         }
 
         const title = (
-            this.state.searched && this.state.filmBase && this.state.results.length
+            this.state.searched && this.state.filmBase && this.state.results
             ? <h3>Searched phrase: {this.state.searched}, found: {this.state.results} positons.</h3>
             : null
         )
@@ -129,9 +145,7 @@ class FilmBase extends Component {
             <div style={{'height': '100%'}}>
                 <div className={this.state.navigationStyle.join(' ')}>
                     {title}
-                    {this.state.numberOfPages 
-                        ? responsePageNavigation
-                        : null}
+                    {responsePageNavigation}
                 </div>
                 <div className='FilmBase__container'>
                     <img className={redCourtainStyle.join(' ')} src={redCourtain} alt="" />

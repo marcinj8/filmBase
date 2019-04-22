@@ -32,16 +32,27 @@ class Layout extends Component {
         this.setState({showMoviesData: false});
     }
 
+    newSearchingHandler = () => {
+        this.setState({
+            title: null,
+            type: null,
+            zoomFilm: null,
+            showMoviesData: false
+        })
+    }
+
     render () {
         return (
             <div style={{'minHeight':'94vh', 'margin': '0','padding': '5px','boxSizing': 'border-box'}}>
                 <Header />
                 <FormBlock 
+                    onNewSearching={this.newSearchingHandler}
                     displayMovies={this.state.title !== null || this.state.type !== null}
                     searchMovies={this.getMovieData}
                     title={this.state.title} />
                 <FilmBase 
                     onZoomFilmData={this.zoomFilmDataHandler}
+                    show={this.state.title !== null || this.state.type !== null}
                     title={this.state.title}
                     type={this.state.type}/>
                 <ZoomFilm 

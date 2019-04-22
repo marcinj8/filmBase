@@ -64,15 +64,6 @@ const pagesNavigation = props => {
                     break;
                 default: pageLoader(props.currentPage)
             };
-            // if(props.currentPage = 2){
-            //     pageLoader(props.currentPage + 1)
-            // }  if(props.currentPage <= 1){
-            //     pageLoader(props.currentPage + 2)
-            // } else if(props.currentPage  >= props.numberOfPages - 3){
-            //     pageLoader(props.currentPage - 2)
-            // } else {
-            //     pageLoader(props.currentPage)
-            // }
         };
 
     return pagesNavigation

@@ -56,24 +56,28 @@ class FilmBase extends Component {
             errorMessage: ''
         })
     }
+    
+    setFilmsInBase = (response) => {
+        this.setState({
+            filmBase: response.data.Search,
+            results: response.data.totalResults,
+            numberOfPages: Math.ceil(response.data.totalResults/10),
+            loading: false
+        })
+    }
+
+    errorHandler = () => {
+        this.setState({
+            error: true,
+            loading: false,
+        })
+    }
 
     getData = (page=this.state.page) => {
         this.loading()
         axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?page=${page}&r=json&type=${this.props.type}&s=${this.props.title}`, config)
-        .then( response => {
-             this.setState({
-                 filmBase: response.data.Search,
-                 results: response.data.totalResults,
-                 numberOfPages: Math.ceil(response.data.totalResults/10),
-                 loading: false
-             })
-        })
-        .catch( () => {
-            this.setState({
-                error: true,
-                loading: false,
-            })
-        })
+        .then( response => this.setFilmsInBase(response))
+        .catch( () => this.errorHandler())
     };
 
     onChangePageHandler = page => {

@@ -10,9 +10,11 @@ const singleFilmBlock = props => {
 
     let singleFilmBlockStyle = props.style || ['SingleFilmBlock__container'];
 
+   
     return (
         <div className={singleFilmBlockStyle.join(' ')}>
-            <h2 onClick={props.clicked}>{props.title}</h2>
+            <h2 
+                onClick={props.clicked}>{props.title}</h2>
             {poster}
             <div>The {props.type} from {props.year}</div>
             <p>

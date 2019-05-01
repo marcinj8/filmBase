@@ -47,9 +47,16 @@
     border: 1px solid black;
 }
 
-.ZoomPositon__container--activate {
-    animation: activateZoomPositon .5s forwards;
+@media(min-width: 500px) {
+    .ZoomPositon__container--activate {
+        animation: activateZoomPositon .5s forwards;
+    }
+
+    .ZoomPositon__container--deactivate {
+        animation: deactivateZoomPositon .5s forwards;
+    }
 }
+
 
 @keyframes activateZoomPositon {
     0% {
@@ -70,9 +77,7 @@
     }
 }
 
-.ZoomPositon__container--deactivate {
-    animation: deactivateZoomPositon .5s forwards;
-}
+
 
 @keyframes deactivateZoomPositon {
     0% {

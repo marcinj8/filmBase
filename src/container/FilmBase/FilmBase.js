@@ -7,12 +7,6 @@ import ResponsePageNavigation from '../../component/displayMovies/ResponsePageNa
 import './FilmBase.css';
 import redCourtain from '../../img/5a1bb95205ea94.6786220615117663540242.png'
 
-let config = {
-    headers: {
-        'X-RapidAPI-Key': '4b2796f64emsh1fba38a60c9c0d5p174064jsn3a16fa3fa413',
-    }
-  }
-
 class FilmBase extends Component {
     state = {
         filmBase: null,
@@ -23,12 +17,27 @@ class FilmBase extends Component {
         loading: false,
         error: false,
         numberOfPages: null,
-        navigationStyle: ['FilmBase__navigation']
+        navigationStyle: ['FilmBase__navigation'],
+        config: {
+            headers: {
+                'X-RapidAPI-Key':null,
+            }
+          }
     };
 
     componentDidUpdate () {
+        if(this.state.config.headers['X-RapidAPI-Key'] === null && this.state.config.headers['X-RapidAPI-Key'] !== this.props.apiKey ) {
+            const updateConfig = {...this.state.config};
+            let updateHeaders = {...updateConfig.headers};
+            updateHeaders = {'X-RapidAPI-Key': this.props.apiKey};
+            updateConfig.headers = updateHeaders;
+
+            this.setState({
+                config: updateConfig
+            })
+        }
+        
         if(!this.props.show && this.state.navigationStyle.length === 2) {
-            console.log(this.state.navigationStyle.length)
             this.setState({
                 navigationStyle: ['FilmBase__navigation']
             })
@@ -75,7 +84,7 @@ class FilmBase extends Component {
 
     getData = (page=this.state.page) => {
         this.loading()
-        axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?page=${page}&r=json&type=${this.props.type}&s=${this.props.title}`, config)
+        axios.get(`https://movie-database-imdb-alternative.p.rapidapi.com/?page=${page}&r=json&type=${this.props.type}&s=${this.props.title}`, this.state.config)
         .then( response => this.setFilmsInBase(response))
         .catch( () => this.errorHandler())
     };

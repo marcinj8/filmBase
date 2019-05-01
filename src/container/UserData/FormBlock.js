@@ -36,7 +36,7 @@ class FormBlock extends Component {
         return (
             <Form
                 clickedNewSearching={this.props.onNewSearching}
-                disableButton={this.state.disableButton}
+                disableButton={this.state.disableButton && this.props.disableButton}
                 displayMovies={this.props.displayMovies}
                 title={this.state.title}
                 inputChange={this.onInputChangeHandler}

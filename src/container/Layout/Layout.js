@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Header from '../../component/Header/Header';
 import FormBlock from '../../container/UserData/FormBlock';
@@ -11,8 +12,23 @@ class Layout extends Component {
         title: null,
         type: null,
         zoomFilm: null,
-        showMoviesData: false
+        showMoviesData: false,
+        apiKey: null
     };
+
+    componentWillMount () {
+        this.downloadApiKey()
+    }
+
+    setApiKey = key => {
+        this.setState({
+            apiKey: key
+        })
+    }
+    downloadApiKey = () => {
+        axios.get('https://cors-anywhere.herokuapp.com/'+'https://apikeys-5e3d9.firebaseio.com/filmBase.json')
+        .then( res => this.setApiKey(res.data))
+    }
     
     getMovieData = (title, type) =>{
         this.setState({
@@ -44,13 +60,16 @@ class Layout extends Component {
     render () {
         return (
             <div style={{'minHeight':'94vh', 'margin': '0','padding': '5px','boxSizing': 'border-box'}}>
-                <Header />
+                <Header 
+                    active={this.state.apiKey !== null}/>
                 <FormBlock 
+                    disableButton={this.state.apiKey === null ? true : false}
                     onNewSearching={this.newSearchingHandler}
                     displayMovies={this.state.title !== null || this.state.type !== null}
                     searchMovies={this.getMovieData}
                     title={this.state.title} />
                 <FilmBase 
+                    apiKey={this.state.apiKey}
                     onZoomFilmData={this.zoomFilmDataHandler}
                     show={this.state.title !== null || this.state.type !== null}
                     title={this.state.title}
